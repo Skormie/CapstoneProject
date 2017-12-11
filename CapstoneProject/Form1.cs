@@ -50,10 +50,10 @@ namespace CapstoneProject
 
         public void CreateMonsters()
         {
-            mobIndex[0] = new Mob("Water Sprite", 100, 100, 5000, Properties.Resources.mob_elementals_0_0, 10);
-            mobIndex[1] = new Mob("Fire Sprite", 100, 100, 3000, Properties.Resources.mob_elementals_0_1, 20);
-            mobIndex[2] = new Mob("Light Sprite", 100, 100, 2000, Properties.Resources.mob_elementals_1_0, 30);
-            mobIndex[3] = new Mob("Earth Sprite", 100, 100, 1000, Properties.Resources.mob_elementals_1_1, 40);
+            mobIndex[0] = new Mob("Water Sprite", 100, 100, 5000, Properties.Resources.mobWater, 10);
+            mobIndex[1] = new Mob("Fire Sprite", 100, 100, 3000, Properties.Resources.mobFire, 20);
+            mobIndex[2] = new Mob("Light Sprite", 100, 100, 2000, Properties.Resources.mobLight, 30);
+            mobIndex[3] = new Mob("Earth Sprite", 100, 100, 1000, Properties.Resources.mobEarth, 40);
         }
 
         public void CreateDrops()
@@ -543,7 +543,7 @@ namespace CapstoneProject
         // Timer to play the attack animation.
         private void timerAtk_Tick(object sender, EventArgs e)
         {
-            List<Bitmap> hitEffect = new List<Bitmap> { Properties.Resources._1, Properties.Resources._2, Properties.Resources._3, Properties.Resources._4, Properties.Resources._5, Properties.Resources._6, Properties.Resources._7, Properties.Resources._8, Properties.Resources._9, Properties.Resources._10, Properties.Resources._11, Properties.Resources._12, Properties.Resources._13, Properties.Resources._14, Properties.Resources._15, Properties.Resources._16 };
+            List<Bitmap> hitEffect = new List<Bitmap> { Properties.Resources.hit1, Properties.Resources.hit2, Properties.Resources.hit3, Properties.Resources.hit4, Properties.Resources.hit5, Properties.Resources.hit6, Properties.Resources.hit7, Properties.Resources.hit8, Properties.Resources.hit9, Properties.Resources.hit10, Properties.Resources.hit11, Properties.Resources.hit12, Properties.Resources.hit13, Properties.Resources.hit14, Properties.Resources.hit15, Properties.Resources.hit16 };
             if (atkCounter < 16)
             {
                 imgMob.Image = hitEffect[(int)atkCounter % 16];

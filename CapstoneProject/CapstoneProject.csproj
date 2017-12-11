@@ -83,42 +83,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\background1-720.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\background3-720.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Hidden Canyon_b.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\landscape.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rock.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\snow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Space-Background-1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Space-Background-2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Space-Background-3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Space-Background-4.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Space-Background-5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\transparent.png" />
   </ItemGroup>
   <ItemGroup>
@@ -159,18 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\face_wall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mini-right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mini-down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mini-left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mini-up.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
