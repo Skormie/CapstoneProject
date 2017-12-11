@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3E4ACB8-0AFB-4C54-83A8-F07149318FEE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CapstoneProject</RootNamespace>
+    <AssemblyName>CapstoneProject</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1-720.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background3-720.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hidden Canyon_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\landscape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Space-Background-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Space-Background-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Space-Background-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Space-Background-4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Space-Background-5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mob-elementals-0-0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mob-elementals-0-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mob-elementals-1-0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mob-elementals-1-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dead_end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_straight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_straight_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\straight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\straight_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\face_wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit_effect\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1x1-0000007f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
