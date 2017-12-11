@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A3E4ACB8-0AFB-4C54-83A8-F07149318FEE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>CapstoneProject</RootNamespace>
     <AssemblyName>CapstoneProject</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>

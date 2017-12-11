@@ -6,13 +6,17 @@ using System.Runtime.InteropServices;
 
 namespace CapstoneProject
 {
-    enum Element
-    {
-        Fire,
-        Water,
-        Earth,
-        Light
-    }
+
+    // **************************************************
+    //
+    // Title: Capstone Project
+    // Description: Randomly Generated Rouge-Like Dungeon Crawler.
+    // Application Type: Win Forms
+    // Author: Jason Luckhardt
+    // Dated Created: 12/02/2017
+    // Last Modified: 12/10/2017
+    //
+    // **************************************************
 
     public partial class Form1 : Form
     {
@@ -35,7 +39,7 @@ namespace CapstoneProject
             CreateDrops();
             CreateAttacks();
             timerMain.Start();
-            Win32.AllocConsole();
+            //Win32.AllocConsole(); // Debug Console.
             DisplayBattleHUD(false);
             SetPlayer();
             Generate();
@@ -213,6 +217,7 @@ namespace CapstoneProject
             return null;
         }
 
+        // Main Timer Responsible for Attacks and Updating Player/Mob HP.
         private void timerMain_Tick(object sender, EventArgs e)
         {
             int rngAtk;
@@ -268,6 +273,7 @@ namespace CapstoneProject
                 trkBarPlayer.Value+= 2;
         }
 
+        // Button Click Forward Moves the player Forward if able and creates battles.
         private void btnForward_Click(object sender, EventArgs e)
         {
             if (attacker != null)
@@ -291,6 +297,7 @@ namespace CapstoneProject
             } 
         }
 
+        // Turns the battle HUD off and ON.
         public void DisplayBattleHUD(bool display)
         {
             lblMonster.Visible = display;
@@ -302,6 +309,7 @@ namespace CapstoneProject
             lblBattleText.BackColor = display ? Color.FromArgb(128, 0, 0, 0) : Color.Transparent;
         }
 
+        // Instantiates the battle scene and selects a random monster.
         private void InstantiateBattle()
         {
             attacker = mobIndex[rng.Next(mobIndex.Length)].Copy();
@@ -311,17 +319,13 @@ namespace CapstoneProject
             lblBattleText.Text = "You encountered a " + attacker.name + ".";
         }
         
+        // Generates my random Maze.
         public void Generate()
         {
             for (int r = 0; r < maze.GetLength(0); r++)
-            {
                 for (int c = 0; c < maze.GetLength(1); c++)
-                {
                     maze[r, c] = 15;
-                    Console.Write("|" + r+","+c + "|");
-                }
-                Console.WriteLine();
-            }
+
             int visitedCells = 0;
             int[] currentXY = new int[] { 0, 0 };
             Stack<int[]> cells = new Stack<int[]>();
@@ -340,24 +344,15 @@ namespace CapstoneProject
                     visitedCells++;
                 }
                 else if (cells.Count > 0)
-                {
                     currentXY = cells.Pop();
-                }
                 else
                     break;
             }
             maze[player.y, player.x] |= 16;
             maze[rng.Next(1, maze.GetLength(0)), rng.Next(1, maze.GetLength(1))] |= 32;
-            for (int r = 0; r < maze.GetLength(0); r++)
-            {
-                for (int c = 0; c < maze.GetLength(1); c++)
-                {
-                    Console.Write("|" + maze[r, c] + "|");
-                }
-                Console.WriteLine();
-            }
         }
 
+        // Destory Walls
         public byte KnickWall(int[] Direction)
         {
             byte[,] walls = new byte[,] { {0, 2, 0},
@@ -366,6 +361,7 @@ namespace CapstoneProject
             return walls[1 + Direction[0], 1 + Direction[1]];
         }
 
+        // List Adjacent Cells that have all 4 Walls
         public List<int[]> GetAdjacentCellWalls(byte[,] Maze, int CurrentX, int CurrentY)
         {
             List<int[]> adjacentCells = new List<int[]>();
@@ -387,11 +383,10 @@ namespace CapstoneProject
             return adjacentCells;
         }
 
+        // Select Attacks from the Attacks Tab.
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine();
             ListBox attacklist = (ListBox)sender;
-            Console.WriteLine(attacklist.SelectedIndex);
             for (int i = 0; i < attackButtons.Count; i++)
             {
                 if (i < listBox1.SelectedItems.Count)
@@ -404,12 +399,13 @@ namespace CapstoneProject
             }
         }
 
+        // Method that controls attacks.
         private void AtkButton_Click(object sender, EventArgs e)
         {
             Button atkButton = (Button)sender;
             int atk = int.Parse(atkButton.AccessibleDescription);
             if (trkBarPlayer.Value >= trkBarPlayer.Maximum
-                && button1.Text != ""
+                && atkButton.Text != ""
                 && attacker != null) {
                 timerAtk.Start();
                 if (equippedAttacks[atk].damage >= attacker.hp)
@@ -420,6 +416,7 @@ namespace CapstoneProject
             }
         }
 
+        // Method rotates the players view right.
         private void btnRight_Click(object sender, EventArgs e)
         {
             if (gameOver || attacker != null) return;
@@ -435,6 +432,7 @@ namespace CapstoneProject
             tableBackgroundPanel.BackgroundImage = DisplayUpdateScene();
         }
 
+        // Method rotates the players view left.
         private void btnLeft_Click(object sender, EventArgs e)
         {
             if (gameOver || attacker != null) return;
@@ -450,6 +448,7 @@ namespace CapstoneProject
             tableBackgroundPanel.BackgroundImage = DisplayUpdateScene();
         }
 
+        // Draw the mini-map and pointer along with shaded areas.
         private void imgMiniMap_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             if (gameOver) return;
@@ -496,6 +495,7 @@ namespace CapstoneProject
             }
         }
 
+        // Gets W, A, S keys when pressed.
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyData)
@@ -517,6 +517,7 @@ namespace CapstoneProject
             }
         }
 
+        // Timer to play the win animation.
         private void timerWin_Tick(object sender, EventArgs e)
         {
             if(winCounter > 0)
@@ -539,6 +540,7 @@ namespace CapstoneProject
             }
         }
 
+        // Timer to play the attack animation.
         private void timerAtk_Tick(object sender, EventArgs e)
         {
             List<Bitmap> hitEffect = new List<Bitmap> { Properties.Resources._1, Properties.Resources._2, Properties.Resources._3, Properties.Resources._4, Properties.Resources._5, Properties.Resources._6, Properties.Resources._7, Properties.Resources._8, Properties.Resources._9, Properties.Resources._10, Properties.Resources._11, Properties.Resources._12, Properties.Resources._13, Properties.Resources._14, Properties.Resources._15, Properties.Resources._16 };
@@ -556,6 +558,7 @@ namespace CapstoneProject
         }
     }
 
+    // Mob Class
     class Mob
     {
         public string name { get; set; }
@@ -608,6 +611,7 @@ namespace CapstoneProject
         }
     }
 
+    // Player Class
     class Player
     {
         public string name { get; set; }
@@ -638,6 +642,7 @@ namespace CapstoneProject
         }
     }
 
+    // Attacks Class
     class Attack
     {
         public string name { get; set; }
@@ -654,6 +659,7 @@ namespace CapstoneProject
         }
     }
 
+    // Drops Class
     public class Drop
     {
         public string name { get; set; }
@@ -668,6 +674,7 @@ namespace CapstoneProject
         }
     }
 
+    // Debug Console
     public class Win32
     {
         [DllImport("kernel32.dll")]
