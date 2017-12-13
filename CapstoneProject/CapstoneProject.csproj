@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A3E4ACB8-0AFB-4C54-83A8-F07149318FEE}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>CapstoneProject</RootNamespace>
     <AssemblyName>CapstoneProject</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -180,6 +180,41 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atk_flurry.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atk1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atk2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\footstep.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grunt.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monster_screech.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screech3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screech4_1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

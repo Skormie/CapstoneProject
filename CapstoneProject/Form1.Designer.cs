@@ -59,7 +59,15 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chkMiniMap = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkSFX = new System.Windows.Forms.CheckBox();
+            this.lblSoundOptions = new System.Windows.Forms.Label();
+            this.chkBGM = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblJSLink = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -86,6 +94,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -345,7 +354,7 @@
             // trkBarPlayer
             // 
             this.trkBarPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.trkBarPlayer.BackColor = System.Drawing.Color.DarkMagenta;
+            this.trkBarPlayer.BackColor = System.Drawing.Color.DodgerBlue;
             this.trkBarPlayer.Enabled = false;
             this.trkBarPlayer.Location = new System.Drawing.Point(93, 27);
             this.trkBarPlayer.Name = "trkBarPlayer";
@@ -439,6 +448,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -488,8 +498,78 @@
             this.tabPage3.Text = "Inventory";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.chkMiniMap);
+            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Controls.Add(this.chkSFX);
+            this.tabPage5.Controls.Add(this.lblSoundOptions);
+            this.tabPage5.Controls.Add(this.chkBGM);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(775, 522);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Options";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // chkMiniMap
+            // 
+            this.chkMiniMap.AutoSize = true;
+            this.chkMiniMap.Checked = true;
+            this.chkMiniMap.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMiniMap.Location = new System.Drawing.Point(29, 103);
+            this.chkMiniMap.Name = "chkMiniMap";
+            this.chkMiniMap.Size = new System.Drawing.Size(66, 17);
+            this.chkMiniMap.TabIndex = 4;
+            this.chkMiniMap.Text = "MiniMap";
+            this.chkMiniMap.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 86);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Graphic Options";
+            // 
+            // chkSFX
+            // 
+            this.chkSFX.AutoSize = true;
+            this.chkSFX.Checked = true;
+            this.chkSFX.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSFX.Location = new System.Drawing.Point(29, 53);
+            this.chkSFX.Name = "chkSFX";
+            this.chkSFX.Size = new System.Drawing.Size(46, 17);
+            this.chkSFX.TabIndex = 2;
+            this.chkSFX.Text = "SFX";
+            this.chkSFX.UseVisualStyleBackColor = true;
+            // 
+            // lblSoundOptions
+            // 
+            this.lblSoundOptions.AutoSize = true;
+            this.lblSoundOptions.Location = new System.Drawing.Point(8, 13);
+            this.lblSoundOptions.Name = "lblSoundOptions";
+            this.lblSoundOptions.Size = new System.Drawing.Size(77, 13);
+            this.lblSoundOptions.TabIndex = 1;
+            this.lblSoundOptions.Text = "Sound Options";
+            // 
+            // chkBGM
+            // 
+            this.chkBGM.AutoSize = true;
+            this.chkBGM.Location = new System.Drawing.Point(29, 29);
+            this.chkBGM.Name = "chkBGM";
+            this.chkBGM.Size = new System.Drawing.Size(50, 17);
+            this.chkBGM.TabIndex = 0;
+            this.chkBGM.Text = "BGM";
+            this.chkBGM.UseVisualStyleBackColor = true;
+            this.chkBGM.CheckedChanged += new System.EventHandler(this.chkBGM_CheckedChanged);
+            // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.linkLabel1);
+            this.tabPage4.Controls.Add(this.lblJSLink);
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Controls.Add(this.label4);
@@ -503,6 +583,28 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Credits";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(336, 132);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(209, 13);
+            this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://soundcloud.com/perpetuallyawake";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // lblJSLink
+            // 
+            this.lblJSLink.AutoSize = true;
+            this.lblJSLink.Location = new System.Drawing.Point(345, 43);
+            this.lblJSLink.Name = "lblJSLink";
+            this.lblJSLink.Size = new System.Drawing.Size(178, 13);
+            this.lblJSLink.TabIndex = 6;
+            this.lblJSLink.TabStop = true;
+            this.lblJSLink.Text = "http://creative-joseraph.tumblr.com/";
+            this.lblJSLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblJSLink_LinkClicked);
             // 
             // label6
             // 
@@ -518,9 +620,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(238, 132);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(306, 13);
+            this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "PerpetuallyAwake    https://soundcloud.com/perpetuallyawake";
+            this.label5.Text = "PerpetuallyAwake";
             // 
             // label4
             // 
@@ -547,9 +649,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(261, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 13);
+            this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Joseph Seraph    http://creative-joseraph.tumblr.com/";
+            this.label2.Text = "Joseph Seraph";
             // 
             // label1
             // 
@@ -603,6 +705,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
@@ -650,6 +754,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timerWin;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label lblSoundOptions;
+        private System.Windows.Forms.CheckBox chkBGM;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lblJSLink;
+        private System.Windows.Forms.CheckBox chkSFX;
+        private System.Windows.Forms.CheckBox chkMiniMap;
+        private System.Windows.Forms.Label label7;
     }
 }
 

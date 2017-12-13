@@ -214,4 +214,28 @@
   <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="atk1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\atk1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="atk2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\atk2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="atk_flurry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\atk_flurry.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="footstep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\footstep.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="grunt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grunt.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="monster_screech" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monster_screech.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="screech3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\screech3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="screech4_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\screech4_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

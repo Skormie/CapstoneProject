@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Media;
+using System.IO;
+using WMPLib;
 
 namespace CapstoneProject
 {
@@ -31,10 +34,14 @@ namespace CapstoneProject
         List<Attack> playerAttacks = new List<Attack>();
         Player player = new Player("Grapes", 100, 20, 200, 1, 0, 0, 3);
         int[,] direction = new int[4, 2] { { 0, 1 }, { -1, 0 }, { 0, -1 }, { 1, 0 } }; // Right, Up, Left, Down
+        WindowsMediaPlayer bgmPlayer = new WindowsMediaPlayer();
 
         public Form1()
         {
             InitializeComponent();
+            chkBGM.AccessibleDescription = "theme.wav";
+            chkBGM_CheckedChanged(null, EventArgs.Empty);
+            bgmPlayer.settings.setMode("loop", true);
             CreateMonsters();
             CreateDrops();
             CreateAttacks();
@@ -50,23 +57,23 @@ namespace CapstoneProject
 
         public void CreateMonsters()
         {
-            mobIndex[0] = new Mob("Water Sprite", 100, 100, 5000, Properties.Resources.mobWater, 10);
-            mobIndex[1] = new Mob("Fire Sprite", 100, 100, 3000, Properties.Resources.mobFire, 20);
-            mobIndex[2] = new Mob("Light Sprite", 100, 100, 2000, Properties.Resources.mobLight, 30);
-            mobIndex[3] = new Mob("Earth Sprite", 100, 100, 1000, Properties.Resources.mobEarth, 40);
+            mobIndex[0] = new Mob("Water Sprite", 100, 100, 5000, Properties.Resources.mobWater, 10, new SoundPlayer(Properties.Resources.screech3));
+            mobIndex[1] = new Mob("Fire Sprite", 100, 100, 3000, Properties.Resources.mobFire, 20, new SoundPlayer(Properties.Resources.screech4_1));
+            mobIndex[2] = new Mob("Light Sprite", 100, 100, 2000, Properties.Resources.mobLight, 30, new SoundPlayer(Properties.Resources.monster_screech));
+            mobIndex[3] = new Mob("Earth Sprite", 100, 100, 1000, Properties.Resources.mobEarth, 40, new SoundPlayer(Properties.Resources.grunt));
         }
 
         public void CreateDrops()
         {
             //mobIndex[0].Drops(new Attack("Drop Kick", 100, 1, 100), new Attack("Round House Kick", 1, 1, 1000));
-            mobIndex[0].Drops(new Drop("Name", new Attack("Roundhouse Kick", 0, 0, 10), 10));
+            mobIndex[0].Drops(new Drop("Name", new Attack("Roundhouse Kick", 0, 0, 10, new SoundPlayer(Properties.Resources.atk_flurry)), 10));
             //mobIndex[1].Drops(new Attack("Double Kick", 100, 1, 100), new Attack("...", 1, 1, 1000), new Attack("Doom Fist", 1000, 1, 1000));
         }
 
         public void CreateAttacks()
         {
-            playerAttacks.Add(new Attack("Weak Kick", 0, 100, 10));
-            playerAttacks.Add(new Attack("Weak Punch", 0, 50, 5));
+            playerAttacks.Add(new Attack("Weak Kick", 0, 100, 10, new SoundPlayer(Properties.Resources.atk1)));
+            playerAttacks.Add(new Attack("Weak Punch", 0, 50, 5, new SoundPlayer(Properties.Resources.atk2)));
             listBox1.Items.AddRange(new string[] { playerAttacks[0].name, playerAttacks[1].name });
             attackButtons = new List<Button>() { button1, button2, button3, button4 };
             listBox1.SetSelected(0, true);
@@ -125,26 +132,30 @@ namespace CapstoneProject
                 }
             }
             else // Deadend
-                return false; // Should make a flat dead end.
+                return false;
             return true;
         }
 
         public Image DisplayUpdateScene()
         {
             bool canMove = CanMove();
-            if (!canMove)
-                return Properties.Resources.face_wall;
 
             int testX = player.x + direction[player.direction, 1];
             int testY = player.y + direction[player.direction, 0];
+
             if (testX >= 0 && testX < maze.GetLength(1)
                 && testY >= 0 && testY < maze.GetLength(0))
             {
                 int Byte = maze[testY, testX];
+
                 if ((Byte & 32) > 0 && canMove)
                     pictureBox1.Image = Properties.Resources.exit;
                 else
                     pictureBox1.Image = null;
+
+                if (!canMove)
+                    return Properties.Resources.face_wall;
+
                 switch (player.direction)
                 {
                     case 0: // Face East
@@ -245,10 +256,15 @@ namespace CapstoneProject
                         damage = attacker.damage = rngAtk;
                         lblBattleText.Text = attacker.name + " hit you for " + damage + " damage.";
                     }
+
                     if (damage >= hpPlayer.Value)
                         hpPlayer.Value = 0;
                     else
+                    {
                         hpPlayer.Value -= damage;
+                        if (chkSFX.Checked)
+                            attacker.atkSFX.Play();
+                    }
                 }
 
                 trkBarMobAtk.Value = (int)(timeCounter % attacker.attackTime / attacker.attackTime * 100);
@@ -257,6 +273,8 @@ namespace CapstoneProject
                     attacker = null;
                     imgMob.BackgroundImage = null;
                     DisplayBattleHUD(false);
+                    chkBGM.AccessibleDescription = "theme.wav";
+                    chkBGM_CheckedChanged(null, EventArgs.Empty);
                 }
                 if (hpPlayer.Value <= 0)
                 {
@@ -266,6 +284,8 @@ namespace CapstoneProject
                     lblBattleText.Visible = true;
                     tableBackgroundPanel.BackgroundImage = null;
                     tableBackgroundPanel.BackColor = Color.Black;
+                    chkBGM.AccessibleDescription = "gameover.wav";
+                    chkBGM_CheckedChanged(null, EventArgs.Empty);
                     lblBattleText.Text = "Looks like this is the end!";
                 }
             }  
@@ -282,6 +302,8 @@ namespace CapstoneProject
                 InstantiateBattle();
             else if (CanMove())
             {
+                if(chkSFX.Checked)
+                    player.footSound.Play();
                 player.x += direction[player.direction, 1];
                 player.y += direction[player.direction, 0];
                 maze[player.y, player.x] |= 16;
@@ -291,6 +313,8 @@ namespace CapstoneProject
                     timerWin.Start();
                     tableBackgroundPanel.BackgroundImage = null;
                     pictureBox1.Image = null;
+                    chkBGM.AccessibleDescription = "fanfare.wav";
+                    chkBGM_CheckedChanged(null, EventArgs.Empty);
                 }
                 else
                     tableBackgroundPanel.BackgroundImage = DisplayUpdateScene();
@@ -317,6 +341,8 @@ namespace CapstoneProject
             lblMonster.Text = attacker.name;
             DisplayBattleHUD(true);
             lblBattleText.Text = "You encountered a " + attacker.name + ".";
+            chkBGM.AccessibleDescription = "battletheme.wav";
+            chkBGM_CheckedChanged(chkBGM, EventArgs.Empty);
         }
         
         // Generates my random Maze.
@@ -411,7 +437,11 @@ namespace CapstoneProject
                 if (equippedAttacks[atk].damage >= attacker.hp)
                     attacker.hp = 0;
                 else
+                {
+                    if(chkSFX.Checked)
+                        equippedAttacks[atk].atkSound.Play();
                     attacker.hp -= equippedAttacks[atk].damage;
+                }
                 trkBarPlayer.Value -= equippedAttacks[atk].attackTime;
             }
         }
@@ -451,7 +481,7 @@ namespace CapstoneProject
         // Draw the mini-map and pointer along with shaded areas.
         private void imgMiniMap_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            if (gameOver) return;
+            if (gameOver||!chkMiniMap.Checked) return;
             Graphics g = e.Graphics;
 
             float rowLines = (imgMiniMap.Bottom * ((100 / (float)maze.GetLength(0)) / 100))-1;
@@ -517,6 +547,27 @@ namespace CapstoneProject
             }
         }
 
+        private void chkBGM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBGM.Checked)
+            {
+                bgmPlayer.URL = Directory.GetCurrentDirectory() + @"\sound\" + chkBGM.AccessibleDescription;
+                bgmPlayer.controls.play();
+            }
+            else
+                bgmPlayer.controls.stop();
+        }
+
+        private void lblJSLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(lblJSLink.Text);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel1.Text);
+        }
+
         // Timer to play the win animation.
         private void timerWin_Tick(object sender, EventArgs e)
         {
@@ -537,6 +588,8 @@ namespace CapstoneProject
                 Generate();
                 tableBackgroundPanel.BackgroundImage = DisplayUpdateScene();
                 lblLevel.Text = "Level " + player.level;
+                chkBGM.AccessibleDescription = "theme.wav";
+                chkBGM_CheckedChanged(null, EventArgs.Empty);
             }
         }
 
@@ -569,7 +622,7 @@ namespace CapstoneProject
         public int attackTime { get; set; }
         public Image img { get; set; }
         public int damage { get; set; }
-        public List<Attack> drops { get; set; }
+        public SoundPlayer atkSFX { get; set; }
 
         public List<Drop> atk_drops = new List<Drop>();
 
@@ -589,10 +642,11 @@ namespace CapstoneProject
             attacker.attackTime = attackTime;
             attacker.img = img;
             attacker.damage = damage;
+            attacker.atkSFX = atkSFX;
             return attacker;
         }
 
-        public Mob( string Name, int MaxHP, int MaxMP, int AttackTime, Image Img, int Damage )
+        public Mob( string Name, int MaxHP, int MaxMP, int AttackTime, Image Img, int Damage, SoundPlayer AtkSFX )
         {
             hp = MaxHP;
             mp = MaxMP;
@@ -602,6 +656,7 @@ namespace CapstoneProject
             attackTime = AttackTime;
             img = Img;
             damage = Damage;
+            atkSFX = AtkSFX;
         }
 
         public void Drops(params Drop[] drops)
@@ -614,6 +669,8 @@ namespace CapstoneProject
     // Player Class
     class Player
     {
+        public SoundPlayer footSound = new SoundPlayer(Properties.Resources.footstep);
+
         public string name { get; set; }
         public int hp { get; set; }
         public int maxHP { get; set; }
@@ -625,8 +682,9 @@ namespace CapstoneProject
         public int x { get; set; }
         public int y { get; set; }
         public int direction { get; set; }
+        //public SoundPlayer footSound { get; set; }
 
-        public Player(string Name, int MaxHP, int MaxMP, int AttackTime, int Level, int X, int Y, int Direction/*, Image Img*/)
+        public Player(string Name, int MaxHP, int MaxMP, int AttackTime, int Level, int X, int Y, int Direction)
         {
             hp = MaxHP;
             mp = MaxMP;
@@ -638,7 +696,6 @@ namespace CapstoneProject
             x = X;
             y = Y;
             direction = Direction;
-            //img = Img;
         }
     }
 
@@ -649,13 +706,15 @@ namespace CapstoneProject
         public int mp { get; set; }
         public int attackTime { get; set; }
         public int damage { get; set; }
+        public SoundPlayer atkSound { get; set; }
 
-        public Attack(string Name, int MP, int AttackTime, int Damage)
+        public Attack(string Name, int MP, int AttackTime, int Damage, SoundPlayer AtkSound)
         {
             mp = MP;
             name = Name;
             attackTime = AttackTime;
             damage = Damage;
+            atkSound = AtkSound;
         }
     }
 
